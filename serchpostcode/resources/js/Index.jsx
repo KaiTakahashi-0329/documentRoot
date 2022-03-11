@@ -4,11 +4,11 @@ import ReactDOM from 'react-dom';
 /**
 * import components
 */
-import Input from './Input';
-import Form from './Form';
-import Btn from './Btn';
-import ListGroup from './ListGroup';
-import AttentionText from './AttentionText';
+import Input from './components/Input';
+import Form from './components/Form';
+import Btn from './components/Btn';
+import ListGroup from './components/ListGroup';
+import AttentionText from './components/AttentionText';
 
 const Index = () => {
     const [postcode, setPostcode] = useState('');

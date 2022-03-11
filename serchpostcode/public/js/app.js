@@ -6012,6 +6012,238 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/js/Index.jsx":
+/*!********************************!*\
+  !*** ./resources/js/Index.jsx ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _components_Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Input */ "./resources/js/components/Input.jsx");
+/* harmony import */ var _components_Form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Form */ "./resources/js/components/Form.jsx");
+/* harmony import */ var _components_Btn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Btn */ "./resources/js/components/Btn.jsx");
+/* harmony import */ var _components_ListGroup__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/ListGroup */ "./resources/js/components/ListGroup.jsx");
+/* harmony import */ var _components_AttentionText__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/AttentionText */ "./resources/js/components/AttentionText.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+/**
+* import components
+*/
+
+
+
+
+
+
+
+
+
+
+var Index = function Index() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      postcode = _useState2[0],
+      setPostcode = _useState2[1];
+  /**
+  * Buttonをクリックされたとき
+  */
+
+
+  var onClickBtn = function onClickBtn() {
+    var _postcode = document.getElementById('postcode').value; // 郵便番号が空でないか
+
+    var isset = issetPostcode(_postcode);
+    var formattedPostcode = formatPostcode(_postcode);
+
+    if (isset) {
+      fetchInputPostcode(formattedPostcode);
+    } else {// 赤字で表示する state管理...？
+    }
+  };
+  /**
+  * 郵便番号を取得するためにAPIを叩く
+  * @param {String} formattedPostcode 郵便番号
+  */
+
+
+  var fetchInputPostcode = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)( /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(formattedPostcode) {
+      var response, json;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return fetch("api/serch/".concat(formattedPostcode));
+
+            case 3:
+              response = _context.sent;
+              _context.next = 6;
+              return response.json();
+
+            case 6:
+              json = _context.sent;
+              setPostcode(json);
+              _context.next = 13;
+              break;
+
+            case 10:
+              _context.prev = 10;
+              _context.t0 = _context["catch"](0);
+              console.log(_context.t0);
+
+            case 13:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 10]]);
+    }));
+
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }(), []);
+  /**
+   * 郵便番号をフォーマットするメイン処理
+   * ・全角を半角に
+   * ・ハイフンありだったらなしに  例: 123-4567 → 1234567
+   * @param {String} postcode 郵便番号
+   * @return {String}
+   */
+
+  var formatPostcode = function formatPostcode(postcode) {
+    // ハイフンが入っていれば削除
+    var deleteHyphenPostcode = deleteHyphen(postcode); // 全角を半角に
+
+    var formattedPostcode = toHalfWidth(deleteHyphenPostcode);
+    return formattedPostcode;
+  };
+  /**
+   * ハイフンが入っていれば削除
+   * ・ハイフンありだったらなしに  例: 123-4567　→ 1234567
+   * @param {String} text 郵便番号
+   * @return {String}
+   */
+
+
+  var deleteHyphen = function deleteHyphen(text) {
+    if (text.indexOf('-') > -1) {
+      var formattedPostcode = text.replace('-', '');
+      return formattedPostcode;
+    } else if (text.indexOf('ー') > -1) {
+      var _formattedPostcode = text.replace('ー', '');
+
+      return _formattedPostcode;
+    } else {
+      return text;
+    }
+  };
+  /**
+   * 全角を半角にする処理
+   * @param {String} input 郵便番号
+   * @return {String}
+   */
+
+
+  var toHalfWidth = function toHalfWidth(input) {
+    return input.replace(/[！-～]/g, function (input) {
+      return String.fromCharCode(input.charCodeAt(0) - 0xFEE0);
+    });
+  };
+  /**
+   * 郵便番号が入力されていないか確認する
+   * @param {String} postcode 郵便番号
+   * @return {Boolean}
+   */
+
+
+  var issetPostcode = function issetPostcode(postcode) {
+    var isset;
+
+    if (postcode === '') {
+      return isset = false;
+    } else {
+      return isset = true;
+    }
+  };
+  /**
+  * Formのエンターキー入力時に遷移しないようにする処理
+  */
+
+
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h1", {
+      className: "fs-2 mt-5 text-center",
+      children: "\u90F5\u4FBF\u756A\u53F7\u691C\u7D22\u30C4\u30FC\u30EB"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+      className: "container mt-5 mb-5",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_components_Form__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        onSubmit: function onSubmit(e) {
+          return handleSubmit(e);
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          label: "\u90F5\u4FBF\u756A\u53F7",
+          labelHelpText: "\u691C\u7D22\u3057\u305F\u3044\u90F5\u4FBF\u756A\u53F7\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044 \u203B\u534A\u89D2, \u30CF\u30A4\u30D5\u30F3\u7121\u3057",
+          btnText: "\u691C\u7D22"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_Btn__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          type: "button",
+          onClick: function onClick() {
+            return onClickBtn();
+          },
+          text: "\u691C\u7D22"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_ListGroup__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        postcode: postcode
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_AttentionText__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        postcode: postcode,
+        className: "text-danger mt-1",
+        text: "\u5165\u529B\u3055\u308C\u305F\u90F5\u4FBF\u756A\u53F7\u306F\u898B\u3064\u304B\u308A\u307E\u305B\u3093\u3067\u3057\u305F\u3002"
+      })]
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Index);
+
+if (document.getElementById('App')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(Index, {}), document.getElementById('App'));
+}
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -6031,7 +6263,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  */
 
 
-__webpack_require__(/*! ./components/index */ "./resources/js/components/index.jsx");
+__webpack_require__(/*! ./Index */ "./resources/js/Index.jsx");
 
 /***/ }),
 
@@ -6276,238 +6508,6 @@ var ListGroup = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.memo)(functio
   });
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ListGroup);
-
-/***/ }),
-
-/***/ "./resources/js/components/index.jsx":
-/*!*******************************************!*\
-  !*** ./resources/js/components/index.jsx ***!
-  \*******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Input */ "./resources/js/components/Input.jsx");
-/* harmony import */ var _Form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Form */ "./resources/js/components/Form.jsx");
-/* harmony import */ var _Btn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Btn */ "./resources/js/components/Btn.jsx");
-/* harmony import */ var _ListGroup__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ListGroup */ "./resources/js/components/ListGroup.jsx");
-/* harmony import */ var _AttentionText__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./AttentionText */ "./resources/js/components/AttentionText.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-/**
-* import components
-*/
-
-
-
-
-
-
-
-
-
-
-var Index = function Index() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
-      _useState2 = _slicedToArray(_useState, 2),
-      postcode = _useState2[0],
-      setPostcode = _useState2[1];
-  /**
-  * Buttonをクリックされたとき
-  */
-
-
-  var onClickBtn = function onClickBtn() {
-    var _postcode = document.getElementById('postcode').value; // 郵便番号が空でないか
-
-    var isset = issetPostcode(_postcode);
-    var formattedPostcode = formatPostcode(_postcode);
-
-    if (isset) {
-      fetchInputPostcode(formattedPostcode);
-    } else {// 赤字で表示する state管理...？
-    }
-  };
-  /**
-  * 郵便番号を取得するためにAPIを叩く
-  * @param {String} formattedPostcode 郵便番号
-  */
-
-
-  var fetchInputPostcode = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)( /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(formattedPostcode) {
-      var response, json;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.prev = 0;
-              _context.next = 3;
-              return fetch("api/serch/".concat(formattedPostcode));
-
-            case 3:
-              response = _context.sent;
-              _context.next = 6;
-              return response.json();
-
-            case 6:
-              json = _context.sent;
-              setPostcode(json);
-              _context.next = 13;
-              break;
-
-            case 10:
-              _context.prev = 10;
-              _context.t0 = _context["catch"](0);
-              console.log(_context.t0);
-
-            case 13:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, null, [[0, 10]]);
-    }));
-
-    return function (_x) {
-      return _ref.apply(this, arguments);
-    };
-  }(), []);
-  /**
-   * 郵便番号をフォーマットするメイン処理
-   * ・全角を半角に
-   * ・ハイフンありだったらなしに  例: 123-4567 → 1234567
-   * @param {String} postcode 郵便番号
-   * @return {String}
-   */
-
-  var formatPostcode = function formatPostcode(postcode) {
-    // ハイフンが入っていれば削除
-    var deleteHyphenPostcode = deleteHyphen(postcode); // 全角を半角に
-
-    var formattedPostcode = toHalfWidth(deleteHyphenPostcode);
-    return formattedPostcode;
-  };
-  /**
-   * ハイフンが入っていれば削除
-   * ・ハイフンありだったらなしに  例: 123-4567　→ 1234567
-   * @param {String} text 郵便番号
-   * @return {String}
-   */
-
-
-  var deleteHyphen = function deleteHyphen(text) {
-    if (text.indexOf('-') > -1) {
-      var formattedPostcode = text.replace('-', '');
-      return formattedPostcode;
-    } else if (text.indexOf('ー') > -1) {
-      var _formattedPostcode = text.replace('ー', '');
-
-      return _formattedPostcode;
-    } else {
-      return text;
-    }
-  };
-  /**
-   * 全角を半角にする処理
-   * @param {String} input 郵便番号
-   * @return {String}
-   */
-
-
-  var toHalfWidth = function toHalfWidth(input) {
-    return input.replace(/[！-～]/g, function (input) {
-      return String.fromCharCode(input.charCodeAt(0) - 0xFEE0);
-    });
-  };
-  /**
-   * 郵便番号が入力されていないか確認する
-   * @param {String} postcode 郵便番号
-   * @return {Boolean}
-   */
-
-
-  var issetPostcode = function issetPostcode(postcode) {
-    var isset;
-
-    if (postcode === '') {
-      return isset = false;
-    } else {
-      return isset = true;
-    }
-  };
-  /**
-  * Formのエンターキー入力時に遷移しないようにする処理
-  */
-
-
-  var handleSubmit = function handleSubmit(e) {
-    e.preventDefault();
-  };
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h1", {
-      className: "fs-2 mt-5 text-center",
-      children: "\u90F5\u4FBF\u756A\u53F7\u691C\u7D22\u30C4\u30FC\u30EB"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
-      className: "container mt-5 mb-5",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_Form__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        onSubmit: function onSubmit(e) {
-          return handleSubmit(e);
-        },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
-          label: "\u90F5\u4FBF\u756A\u53F7",
-          labelHelpText: "\u691C\u7D22\u3057\u305F\u3044\u90F5\u4FBF\u756A\u53F7\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044 \u203B\u534A\u89D2, \u30CF\u30A4\u30D5\u30F3\u7121\u3057",
-          btnText: "\u691C\u7D22"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Btn__WEBPACK_IMPORTED_MODULE_5__["default"], {
-          type: "button",
-          onClick: function onClick() {
-            return onClickBtn();
-          },
-          text: "\u691C\u7D22"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_ListGroup__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        postcode: postcode
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_AttentionText__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        postcode: postcode,
-        className: "text-danger mt-1",
-        text: "\u5165\u529B\u3055\u308C\u305F\u90F5\u4FBF\u756A\u53F7\u306F\u898B\u3064\u304B\u308A\u307E\u305B\u3093\u3067\u3057\u305F\u3002"
-      })]
-    })]
-  });
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Index);
-
-if (document.getElementById('App')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(Index, {}), document.getElementById('App'));
-}
 
 /***/ }),
 
