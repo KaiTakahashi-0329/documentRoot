@@ -1,22 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+
+import Top from './templates/Top';
+import Create from './templates/Create';
 
 function Index() {
     return (
-        <div className="container mt-3">
-            <div className="row justify-content-center">
-                <div className="col-md-8">
-                    <div className="card">
-                        <div className="card-header">Example Component</div>
-
-                        <div className="card-body">I'm an example component!</div>
-                        <div className="card-body">I'm an example component!</div>
-                        <div className="card-body">I'm an example component!</div>
-                        <div className="card-body">I'm an example component!</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={ <Top/> } />
+                <Route path="create" element={ <Create/> } />
+            </Routes>
+        </BrowserRouter>
     );
 }
 
