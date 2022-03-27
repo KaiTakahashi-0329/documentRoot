@@ -5415,7 +5415,7 @@ var Form = function Form() {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "ms-3",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Selectbox__WEBPACK_IMPORTED_MODULE_1__["default"], {
-          label: "\u512A\u5148\u5EA6",
+          label: "\u7DCA\u6025\u5EA6",
           selectArray: ['高', '中', '低']
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -5576,6 +5576,12 @@ __webpack_require__.r(__webpack_exports__);
 var Selectbox = function Selectbox(props) {
   var label = props.label,
       selectArray = props.selectArray;
+  var options = selectArray.map(function (element, index) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+      value: element,
+      children: element
+    }, index);
+  });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
       className: "form-label",
@@ -5583,12 +5589,7 @@ var Selectbox = function Selectbox(props) {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("select", {
       "class": "form-select",
       defaultValue: "0",
-      children: selectArray.map(function (element, index) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
-          value: index,
-          children: element
-        }, index);
-      })
+      children: options
     })]
   });
 };

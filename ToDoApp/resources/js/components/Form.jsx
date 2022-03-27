@@ -17,7 +17,7 @@ const Form = () => {
                     <Selectbox label='重要度' selectArray={ ['高', '中', '低'] } />
                 </div>
                 <div className="ms-3">
-                    <Selectbox label='優先度' selectArray={ ['高', '中', '低'] } />
+                    <Selectbox label='緊急度' selectArray={ ['高', '中', '低'] } />
                 </div>
                 <div className="ms-3">
                     <Selectbox label='ステータス' selectArray={ ['進行予定', '一時退避', '進行中', '完了'] } />
