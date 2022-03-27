@@ -1,4 +1,5 @@
 import PrimaryButton from './PrimaryButton';
+import Selectbox from './Selectbox';
 
 const Form = () => {
     return (
@@ -13,20 +14,13 @@ const Form = () => {
             </div>
             <div className="mb-3 d-flex">
                 <div>
-                    <label className="form-label">重要度</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected value="1">高</option>
-                        <option value="2">中</option>
-                        <option value="3">低</option>
-                    </select>
+                    <Selectbox label='重要度' selectArray={ ['高', '中', '低'] } />
                 </div>
                 <div className="ms-3">
-                    <label className="form-label">優先度</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected value="1">高</option>
-                        <option value="2">中</option>
-                        <option value="3">低</option>
-                    </select>
+                    <Selectbox label='優先度' selectArray={ ['高', '中', '低'] } />
+                </div>
+                <div className="ms-3">
+                    <Selectbox label='ステータス' selectArray={ ['進行予定', '一時退避', '進行中', '完了'] } />
                 </div>
             </div>
             <div className="mb-3 w-25">
@@ -39,6 +33,9 @@ const Form = () => {
     )
 }
 
+/*
+* datetimepickerの実行
+*/
 $(function() {
     $("#datetimepicker").datetimepicker();
 });
