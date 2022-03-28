@@ -16,4 +16,6 @@ use App\Http\Controllers\ToDoAppController;
 
 Auth::routes();
 
-Route::get('{any}', [ToDoAppController::class, 'index'])->where('any', '.*');
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('{any}', [ToDoAppController::class, 'index'])->where('any', '.*');
+});
