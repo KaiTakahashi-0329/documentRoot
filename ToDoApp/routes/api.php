@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/todos', [ToDoAppApiController::class, 'index']);
 Route::post('/store', [ToDoAppApiController::class, 'store']);
+Route::get('/todo/{id}', [ToDoAppApiController::class, 'show']);
