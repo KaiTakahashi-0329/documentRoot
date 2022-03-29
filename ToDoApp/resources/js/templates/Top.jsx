@@ -7,9 +7,10 @@ import Item from '../components/Item';
 import PrimaryButton from '../components/PrimaryButton';
 import axios from 'axios';
 
-function Top() {
+const Top = () => {
+    
     const [todoList, setTodoList] = useState([]);
-
+    
     useEffect(() => {
         const fetchTodoList = async () => {
             await axios.get('/api/todos').then(res => {
@@ -21,7 +22,7 @@ function Top() {
         } 
 
         fetchTodoList();
-    }, []);
+    }, []);    
 
     return (
         <>
