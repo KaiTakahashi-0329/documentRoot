@@ -56,6 +56,9 @@ class ToDoAppApiController extends Controller
     public function show($id)
     {
         //
+        $todo = Todo::where('id', $id)->with(['status', 'important', 'urgent'])->get();
+
+        return $todo;
     }
 
     /**
