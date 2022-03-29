@@ -18,9 +18,9 @@ class CreateTodosTable extends Migration
             $table->timestamps();
             $table->foreignId('user_id')->constrained('users');
             $table->string('title', 50);
-            $table->text('text')->nullable();;
-            $table->string('important', 10);
-            $table->string('urgent', 10);
+            $table->text('text')->nullable();
+            $table->foreignId('important_id')->constrained('levels');
+            $table->foreignId('urgent_id')->constrained('levels');
             $table->foreignId('status_id')->constrained('statuses');
             $table->dateTime('deadline')->nullable();
 
