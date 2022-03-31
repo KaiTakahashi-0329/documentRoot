@@ -45,6 +45,20 @@ class ToDoAppApiController extends Controller
     public function store(Request $request)
     {
         //
+        $user_id = Auth::id();
+
+        $todo = new Todo();
+        $todo->user_id = $user_id;
+        $todo->title = $request->title;
+        $todo->text = $request->text;
+        $todo->important_id = $request->important_id;
+        $todo->urgent_id = $request->urgent_id;
+        $todo->status_id = $request->status_id;
+        $todo->deadline = $request->deadline;
+
+        var_dump($request->deadline);
+
+        $todo->save();
     }
 
     /**
