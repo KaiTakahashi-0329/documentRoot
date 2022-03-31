@@ -7,7 +7,7 @@ import Form from '../components/Form';
 function Create() {
     return (
         <>
-        <div className="container">
+        <div className="container w-75">
             <Form />
         </div>
         </>      
