@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 
 import PrimaryButton from './PrimaryButton';
 import Selectbox from './Selectbox';
+import Input from './Input';
+import Textarea from './Textarea';
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -26,17 +28,43 @@ const Form = () => {
         setValues(newValues);
     }
 
-    /**
-     * DataPickerの箇所だけe.target.valueを取得できないため個別で用意
-     * 値を別のstateに保存してから、その値を元に再設定する
-     */
+        /**
+        * deadlineのフォーマットを yyyy-MM-dd HH:mm:ss に変換する処理
+        */
+       const formattedDate = () => {
+        const date = new Date(dataPicker);
+
+        if(isNaN(date)) return;
+
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const _date = date.getDate();
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const seconds = date.getSeconds();
+
+        const formattedDate = `${year}-${String(month).length > 1 ? month : '0' + month }-${String(_date).length > 1 ? _date : '0' + _date } ${String(hours).length > 1 ? hours : '0' + hours }:${String(minutes).length > 1 ? minutes : '0' + minutes }:${String(seconds).length > 1 ? seconds : '0' + seconds }`;
+        
+        return formattedDate;
+    }
+
     useEffect(() => {
-        const newValues = {
-            ...values,
-            deadline: dataPicker
+        /**
+        * DataPickerの箇所だけe.target.valueを取得できないため個別で用意
+        * 値を別のstateに保存してから、その値を元に再設定する
+        */
+        const setStateDeadline = () => {
+            const date = formattedDate();
+
+            const newValues = {
+                ...values,
+                deadline: date
+            }
+    
+            setValues(newValues);
         }
 
-        setValues(newValues);
+        setStateDeadline();
         
     }, [dataPicker]);
 
@@ -48,17 +76,15 @@ const Form = () => {
         .catch((error) => {
             console.log(error);
         })
-    }
+    }    
     
     return (
         <form>
             <div className="mb-3">
-                <label htmlFor="title" className="form-label">タイトル</label>
-                <input type="text" className="form-control" id="title" onChange={handleChange('title')} />
+                <Input id='title' lable='タイトル' type='text' onChange={handleChange('title')} />
             </div>
             <div className="mb-3">
-                <label htmlFor="textarea" className="form-label">内容</label>
-                <textarea type="text" className="form-control" id="textarea" onChange={handleChange('text')} ></textarea>
+                <Input id='textarea' lable='内容' type='text' onChange={handleChange('text')} />
             </div>
             <div className="mb-3 d-flex">
                 <div>
