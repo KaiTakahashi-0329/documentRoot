@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
 import Form from '../components/Form';
+import PostResultMessage from '../components/PostResultMessage';
 
-function Create() {
+function Create(props) {
+    const { isPostResult, postResult } = props;
+
     return (
         <>
+        <PostResultMessage postResult={postResult} />
         <div className="container w-75">
-            <Form />
+            <Form isPostResult={isPostResult} />
         </div>
         </>      
     );

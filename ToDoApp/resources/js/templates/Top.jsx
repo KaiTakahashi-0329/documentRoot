@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import List from '../components/List';
 import Item from '../components/Item';
 import PrimaryButton from '../components/PrimaryButton';
-import axios from 'axios';
+import PostResultMessage from '../components/PostResultMessage';
 
-const Top = () => {
+const Top = (props) => {
+    const { postResult } = props;
     
     const [todoList, setTodoList] = useState([]);
     
@@ -26,6 +28,7 @@ const Top = () => {
 
     return (
         <>
+            <PostResultMessage postResult={postResult} />
             <Link to="/create">
                 <PrimaryButton text="追加する" />
             </Link>
