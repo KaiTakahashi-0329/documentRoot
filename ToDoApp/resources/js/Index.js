@@ -7,11 +7,17 @@ import Create from './templates/Create';
 import Show from './templates/Show';
 
 function Index() {
+    const [postResult, setPostResult] = useState('');    
+
+    const isPostResult = (result) => {
+        setPostResult(result);
+    }
+
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={ <Top /> } />
-                <Route path="/create" element={ <Create /> } />
+                <Route path="/" element={ <Top postResult={postResult} /> } />
+                <Route path="/create" element={ <Create isPostResult={isPostResult} postResult={postResult} /> } />
                 <Route path="/todo/:id" element={ <Show /> } />
             </Routes>
         </BrowserRouter>
