@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
@@ -7,6 +7,10 @@ import PostResultMessage from '../components/PostResultMessage';
 
 function Create(props) {
     const { isPostResult, postResult } = props;
+
+    useEffect(() => {
+        isPostResult('');
+    }, [])
 
     return (
         <>

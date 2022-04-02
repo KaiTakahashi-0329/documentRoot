@@ -5404,6 +5404,34 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/components/DisabledButton.jsx":
+/*!****************************************************!*\
+  !*** ./resources/js/components/DisabledButton.jsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+var DisabledButton = function DisabledButton(props) {
+  var text = props.text;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
+    disabled: true,
+    type: "button",
+    "class": "btn btn-secondary",
+    children: text
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DisabledButton);
+
+/***/ }),
+
 /***/ "./resources/js/components/Form.jsx":
 /*!******************************************!*\
   !*** ./resources/js/components/Form.jsx ***!
@@ -5416,15 +5444,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
-/* harmony import */ var _PrimaryButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PrimaryButton */ "./resources/js/components/PrimaryButton.jsx");
-/* harmony import */ var _Selectbox__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Selectbox */ "./resources/js/components/Selectbox.jsx");
-/* harmony import */ var _Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Input */ "./resources/js/components/Input.jsx");
-/* harmony import */ var _Textarea__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Textarea */ "./resources/js/components/Textarea.jsx");
-/* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-datepicker */ "./node_modules/react-datepicker/dist/react-datepicker.min.js");
-/* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_datepicker__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var react_datepicker_dist_react_datepicker_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-datepicker/dist/react-datepicker.css */ "./node_modules/react-datepicker/dist/react-datepicker.css");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var _DisabledButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DisabledButton */ "./resources/js/components/DisabledButton.jsx");
+/* harmony import */ var _PrimaryButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PrimaryButton */ "./resources/js/components/PrimaryButton.jsx");
+/* harmony import */ var _Selectbox__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Selectbox */ "./resources/js/components/Selectbox.jsx");
+/* harmony import */ var _Input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Input */ "./resources/js/components/Input.jsx");
+/* harmony import */ var _Textarea__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Textarea */ "./resources/js/components/Textarea.jsx");
+/* harmony import */ var _modules_validate__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../modules/validate */ "./resources/js/modules/validate.js");
+/* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-datepicker */ "./node_modules/react-datepicker/dist/react-datepicker.min.js");
+/* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react_datepicker__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var react_datepicker_dist_react_datepicker_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-datepicker/dist/react-datepicker.css */ "./node_modules/react-datepicker/dist/react-datepicker.css");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -5454,16 +5484,23 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 var Form = function Form(props) {
   var isPostResult = props.isPostResult;
-  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useNavigate)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.useNavigate)();
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
-      dataPicker = _useState2[0],
-      setDataPicker = _useState2[1];
+      validate = _useState2[0],
+      setValidate = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+      _useState4 = _slicedToArray(_useState3, 2),
+      dataPicker = _useState4[0],
+      setDataPicker = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     title: '',
     text: '',
     important_id: 1,
@@ -5471,15 +5508,28 @@ var Form = function Form(props) {
     status_id: 1,
     deadline: ''
   }),
-      _useState4 = _slicedToArray(_useState3, 2),
-      values = _useState4[0],
-      setValues = _useState4[1];
+      _useState6 = _slicedToArray(_useState5, 2),
+      values = _useState6[0],
+      setValues = _useState6[1];
 
   var handleChange = function handleChange(name) {
     return function (event) {
       var newValues = _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, name, event.target.value));
 
       setValues(newValues);
+      /**
+      * 「タイトル」部分のバリデーション
+      * 空白 or null だったときにstateをfalseにする
+      * @type {Strign} title
+      */
+
+      var validateTitle = function validateTitle(name) {
+        if (name !== 'title') return;
+        var isNull_title = (0,_modules_validate__WEBPACK_IMPORTED_MODULE_6__.isNull)(newValues.title);
+        setValidate(isNull_title);
+      };
+
+      validateTitle(name);
     };
   };
   /**
@@ -5519,10 +5569,15 @@ var Form = function Form(props) {
 
     setStateDeadline();
   }, [dataPicker]);
+  /**
+  * Postする処理
+  *   成功したらTOPへリダイレクト
+  *   失敗時はエラーメッセージの出力
+  * @type {object} valuse
+  */
 
   var submitForm = function submitForm(data) {
     axios.post('/api/store', data).then(function () {
-      console.log('送信完了しました。');
       isPostResult('success');
     }).then(function () {
       navigate('/');
@@ -5532,53 +5587,53 @@ var Form = function Form(props) {
     });
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("form", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
       className: "mb-3",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Input__WEBPACK_IMPORTED_MODULE_4__["default"], {
         id: "title",
         lable: "\u30BF\u30A4\u30C8\u30EB",
         type: "text",
         onChange: handleChange('title')
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
       className: "mb-3",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Textarea__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Textarea__WEBPACK_IMPORTED_MODULE_5__["default"], {
         id: "textarea",
         lable: "\u5185\u5BB9",
         type: "text",
         onChange: handleChange('text')
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
       className: "mb-3 d-flex",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Selectbox__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Selectbox__WEBPACK_IMPORTED_MODULE_3__["default"], {
           label: "\u91CD\u8981\u5EA6",
           selectArray: ['高', '中', '低'],
           onChange: handleChange('important_id')
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
         className: "ms-3",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Selectbox__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Selectbox__WEBPACK_IMPORTED_MODULE_3__["default"], {
           label: "\u7DCA\u6025\u5EA6",
           selectArray: ['高', '中', '低'],
           onChange: handleChange('urgent_id')
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
         className: "ms-3",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Selectbox__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Selectbox__WEBPACK_IMPORTED_MODULE_3__["default"], {
           label: "\u30B9\u30C6\u30FC\u30BF\u30B9",
           selectArray: ['進行予定', '進行中', '完了', '一時退避'],
           onChange: handleChange('status_id')
         })
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
       className: "mb-3 w-25",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("label", {
         htmlFor: "datetimepicker",
         className: "form-label",
         children: "\u671F\u9650"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)((react_datepicker__WEBPACK_IMPORTED_MODULE_8___default()), {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)((react_datepicker__WEBPACK_IMPORTED_MODULE_10___default()), {
         selected: dataPicker,
         showTimeSelect: true,
         dateFormat: "yyyy-MM-dd HH:mm:ss",
@@ -5586,11 +5641,13 @@ var Form = function Form(props) {
           return setDataPicker(date);
         }
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_PrimaryButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }), validate ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_PrimaryButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
       text: "\u8FFD\u52A0\u3059\u308B",
       onClick: function onClick() {
         return submitForm(values);
       }
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_DisabledButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      text: "\u8FFD\u52A0\u3059\u308B"
     })]
   });
 };
@@ -5876,6 +5933,30 @@ var Textarea = function Textarea(props) {
 
 /***/ }),
 
+/***/ "./resources/js/modules/validate.js":
+/*!******************************************!*\
+  !*** ./resources/js/modules/validate.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "isNull": () => (/* binding */ isNull)
+/* harmony export */ });
+var isNull = function isNull(text) {
+  var whitespace = /\s/;
+  var isWhitespace = whitespace.test(text);
+  var string = /\S/;
+  var isString = string.test(text);
+  if (!text || isWhitespace && !isString) return false;
+  return true;
+};
+
+
+
+/***/ }),
+
 /***/ "./resources/js/templates/Create.jsx":
 /*!*******************************************!*\
   !*** ./resources/js/templates/Create.jsx ***!
@@ -5904,6 +5985,9 @@ __webpack_require__.r(__webpack_exports__);
 function Create(props) {
   var isPostResult = props.isPostResult,
       postResult = props.postResult;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    isPostResult('');
+  }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_PostResultMessage__WEBPACK_IMPORTED_MODULE_3__["default"], {
       postResult: postResult

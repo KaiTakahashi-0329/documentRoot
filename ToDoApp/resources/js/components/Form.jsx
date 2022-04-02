@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 
+import DisabledButton from './DisabledButton';
 import PrimaryButton from './PrimaryButton';
 import Selectbox from './Selectbox';
 import Input from './Input';
 import Textarea from './Textarea';
+
+import { isNull } from '../modules/validate';
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -13,6 +16,7 @@ const Form = (props) => {
     const { isPostResult } = props;
     const navigate = useNavigate();
 
+    const [validate, setValidate] = useState(false);
     const [dataPicker, setDataPicker] = useState();
     const [values, setValues] = useState({
         title: '',
@@ -30,6 +34,20 @@ const Form = (props) => {
         }
         
         setValues(newValues);
+
+        /**
+        * 「タイトル」部分のバリデーション
+        * 空白 or null だったときにstateをfalseにする
+        * @type {Strign} title
+        */
+        const validateTitle = (name) => {
+            if(name !== 'title') return;
+
+            const isNull_title = isNull(newValues.title);
+            setValidate(isNull_title);
+        }
+
+        validateTitle(name);
     }
 
         /**
@@ -72,10 +90,15 @@ const Form = (props) => {
         
     }, [dataPicker]);
 
+    /**
+    * Postする処理
+    *   成功したらTOPへリダイレクト
+    *   失敗時はエラーメッセージの出力
+    * @type {object} valuse
+    */
     const submitForm = (data) => {
         axios.post('/api/store', data)
         .then(() => {
-            console.log('送信完了しました。')
             isPostResult('success');
         })
         .then(() => {
@@ -111,7 +134,9 @@ const Form = (props) => {
                 <DatePicker selected={dataPicker} showTimeSelect dateFormat="yyyy-MM-dd HH:mm:ss" onChange={(date) => setDataPicker(date)} />
             </div>
 
-            <PrimaryButton text="追加する" onClick={ () => submitForm(values) } />
+            {
+                validate ? <PrimaryButton text="追加する" onClick={ () => submitForm(values) } /> : <DisabledButton text="追加する" />
+            }
         </form>
     )
 }
