@@ -56,8 +56,6 @@ class ToDoAppApiController extends Controller
         $todo->status_id = $request->status_id;
         $todo->deadline = $request->deadline;
 
-        var_dump($request->deadline);
-
         $todo->save();
     }
 
