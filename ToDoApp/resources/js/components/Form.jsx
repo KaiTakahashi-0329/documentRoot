@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 import PrimaryButton from './PrimaryButton';
 import Selectbox from './Selectbox';
@@ -8,7 +9,10 @@ import Textarea from './Textarea';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const Form = () => {
+const Form = (props) => {
+    const { isPostResult } = props;
+    const navigate = useNavigate();
+
     const [dataPicker, setDataPicker] = useState();
     const [values, setValues] = useState({
         title: '',
@@ -72,9 +76,14 @@ const Form = () => {
         axios.post('/api/store', data)
         .then(() => {
             console.log('送信完了しました。')
+            isPostResult('success');
+        })
+        .then(() => {
+            navigate('/');
         })
         .catch((error) => {
             console.log(error);
+            isPostResult('error');
         })
     }    
     
@@ -84,7 +93,7 @@ const Form = () => {
                 <Input id='title' lable='タイトル' type='text' onChange={handleChange('title')} />
             </div>
             <div className="mb-3">
-                <Input id='textarea' lable='内容' type='text' onChange={handleChange('text')} />
+                <Textarea id='textarea' lable='内容' type='text' onChange={handleChange('text')} />
             </div>
             <div className="mb-3 d-flex">
                 <div>
