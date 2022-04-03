@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Models\Todo;
+use App\Http\Requests\Todo\TodoAppRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,7 +43,7 @@ class ToDoAppApiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TodoAppRequest $request)
     {
         //
         $user_id = Auth::id();
