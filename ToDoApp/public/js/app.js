@@ -5641,6 +5641,11 @@ var Form = function Form(props) {
           return setDataPicker(date);
         }
       })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_PrimaryButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      text: "\u8FFD\u52A0\u3059\u308B",
+      onClick: function onClick() {
+        return submitForm(values);
+      }
     }), validate ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_PrimaryButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
       text: "\u8FFD\u52A0\u3059\u308B",
       onClick: function onClick() {

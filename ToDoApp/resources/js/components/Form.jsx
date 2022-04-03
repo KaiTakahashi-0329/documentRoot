@@ -134,6 +134,8 @@ const Form = (props) => {
                 <DatePicker selected={dataPicker} showTimeSelect dateFormat="yyyy-MM-dd HH:mm:ss" onChange={(date) => setDataPicker(date)} />
             </div>
 
+            <PrimaryButton text="追加する" onClick={ () => submitForm(values) } />
+
             {
                 validate ? <PrimaryButton text="追加する" onClick={ () => submitForm(values) } /> : <DisabledButton text="追加する" />
             }
