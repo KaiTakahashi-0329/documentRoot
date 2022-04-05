@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const Show = () => {
     const [todo, setTodo] = useState([]);
     
     // urlパラメーター取得
     const params = useParams();
+    const id = params.id;
+    const editLink = `/todo/edit/${id}`;
     
     useEffect(() => {
         const fetchTodoList = async () => {
@@ -75,6 +77,7 @@ const Show = () => {
                     })
                 }
             </div>
+            <Link to={editLink} className="card-text">編集する</Link>
         </div>
     )
 }
