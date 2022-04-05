@@ -5723,6 +5723,7 @@ var item = function item(props) {
       text = props.text,
       created_at = props.created_at;
   var link = "/todo/".concat(id);
+  var editLink = "/todo/edit/".concat(id);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", {
     className: "col",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
@@ -5741,7 +5742,11 @@ var item = function item(props) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
           to: link,
           className: "card-text",
-          children: "More View"
+          children: "\u8A73\u7D30\u3092\u898B\u308B"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+          to: editLink,
+          className: "card-text ms-3",
+          children: "\u7DE8\u96C6\u3059\u308B"
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
         className: "card-footer",
@@ -6024,6 +6029,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -6056,6 +6062,8 @@ var Show = function Show() {
 
 
   var params = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useParams)();
+  var id = params.id;
+  var editLink = "/todo/edit/".concat(id);
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     var fetchTodoList = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -6161,6 +6169,10 @@ var Show = function Show() {
           children: element.deadline
         }, index);
       })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+      to: editLink,
+      className: "card-text",
+      children: "\u7DE8\u96C6\u3059\u308B"
     })]
   });
 };
