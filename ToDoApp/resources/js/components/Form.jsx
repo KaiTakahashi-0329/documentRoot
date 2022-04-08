@@ -13,8 +13,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const Form = (props) => {
-    const { isPostResult } = props;
-    const navigate = useNavigate();
+    const { onClickAddButton, todo= [] } = props;    
 
     const [validate, setValidate] = useState(false);
     const [dataPicker, setDataPicker] = useState();
@@ -89,55 +88,56 @@ const Form = (props) => {
         setStateDeadline();
         
     }, [dataPicker]);
-
-    /**
-    * Postする処理
-    *   成功したらTOPへリダイレクト
-    *   失敗時はエラーメッセージの出力
-    * @type {object} valuse
-    */
-    const submitForm = (data) => {
-        axios.post('/api/store', data)
-        .then(() => {
-            isPostResult('success');
-        })
-        .then(() => {
-            navigate('/');
-        })
-        .catch((error) => {
-            console.log(error);
-            isPostResult('error');
-        })
-    }    
     
     return (
         <form>
             <div className="mb-3">
-                <Input id='title' lable='タイトル' type='text' onChange={handleChange('title')} />
+                {
+                    todo.length > 0 
+                    ? <Input id='title' lable='タイトル' type='text' onChange={handleChange('title')} value={todo[0].title} /> 
+                    : <Input id='title' lable='タイトル' type='text' onChange={handleChange('title')} />
+                }
             </div>
             <div className="mb-3">
-                <Textarea id='textarea' lable='内容' type='text' onChange={handleChange('text')} />
+                {
+                    todo.length > 0
+                    ? <Textarea id='textarea' lable='内容' type='text' onChange={handleChange('text')} value={todo[0].text} />
+                    : <Textarea id='textarea' lable='内容' type='text' onChange={handleChange('text')} />
+                }
             </div>
             <div className="mb-3 d-flex">
                 <div>
-                    <Selectbox label='重要度' selectArray={ ['高', '中', '低'] } onChange={handleChange('important_id')} />
+                {
+                    todo.length > 0
+                    ? <Selectbox label='重要度' selectArray={ ['高', '中', '低'] } onChange={handleChange('important_id')} value={todo[0].important_id} />
+                    : <Selectbox label='重要度' selectArray={ ['高', '中', '低'] } onChange={handleChange('important_id')} />
+                }
                 </div>
                 <div className="ms-3">
-                    <Selectbox label='緊急度' selectArray={ ['高', '中', '低'] } onChange={handleChange('urgent_id')} />
+                {
+                    todo.length > 0
+                    ? <Selectbox label='緊急度' selectArray={ ['高', '中', '低'] } onChange={handleChange('urgent_id')} value={todo[0].urgent_id} />
+                    : <Selectbox label='緊急度' selectArray={ ['高', '中', '低'] } onChange={handleChange('urgent_id')} />
+                }   
                 </div>
                 <div className="ms-3">
-                    <Selectbox label='ステータス' selectArray={ ['進行予定', '進行中', '完了', '一時退避'] } onChange={handleChange('status_id')} />
+                {
+                    todo.length > 0
+                    ? <Selectbox label='ステータス' selectArray={ ['進行予定', '進行中', '完了', '一時退避'] } onChange={handleChange('status_id')} value={todo[0].status_id} />
+                    : <Selectbox label='ステータス' selectArray={ ['進行予定', '進行中', '完了', '一時退避'] } onChange={handleChange('status_id')} />
+                }
                 </div>
             </div>
             <div className="mb-3 w-25">
                 <label htmlFor="datetimepicker" className="form-label">期限</label>
-                <DatePicker selected={dataPicker} showTimeSelect dateFormat="yyyy-MM-dd HH:mm:ss" onChange={(date) => setDataPicker(date)} />
+                {
+                    todo.length > 0
+                    ? <DatePicker selected={todo[0].status_id && dataPicker} showTimeSelect dateFormat="yyyy-MM-dd HH:mm:ss" onChange={(date) => setDataPicker(date)} />
+                    : <DatePicker selected={dataPicker} showTimeSelect dateFormat="yyyy-MM-dd HH:mm:ss" onChange={(date) => setDataPicker(date)} />
+                }
             </div>
-
-            <PrimaryButton text="追加する" onClick={ () => submitForm(values) } />
-
             {
-                validate ? <PrimaryButton text="追加する" onClick={ () => submitForm(values) } /> : <DisabledButton text="追加する" />
+                validate ? <PrimaryButton text="追加する" onClick={ () => onClickAddButton(values) } /> : <DisabledButton text="追加する" />
             }
         </form>
     )
