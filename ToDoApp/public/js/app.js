@@ -6147,11 +6147,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
 /* harmony import */ var _components_Form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Form */ "./resources/js/components/Form.jsx");
 /* harmony import */ var _components_PostResultMessage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/PostResultMessage */ "./resources/js/components/PostResultMessage.jsx");
 /* harmony import */ var _hooks_useFetchTodo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../hooks/useFetchTodo */ "./resources/js/hooks/useFetchTodo.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -6164,19 +6167,32 @@ __webpack_require__.r(__webpack_exports__);
 var Edit = function Edit(props) {
   var isPostResult = props.isPostResult,
       postResult = props.postResult;
-  var params = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useParams)();
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useNavigate)();
+  var params = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useParams)();
   var id = params.id;
+
+  var submitForm = function submitForm(data) {
+    axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/todo/update/".concat(id), data).then(function () {
+      isPostResult('success');
+      navigate('/');
+    })["catch"](function (error) {
+      console.log(error);
+      isPostResult('error');
+    });
+  };
+
   var todo = (0,_hooks_useFetchTodo__WEBPACK_IMPORTED_MODULE_3__["default"])(id);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     isPostResult('');
   }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_PostResultMessage__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_PostResultMessage__WEBPACK_IMPORTED_MODULE_2__["default"], {
       postResult: postResult
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
       className: "container w-75",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Form__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        todo: todo
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Form__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        todo: todo,
+        onClickAddButton: submitForm
       })
     })]
   });
