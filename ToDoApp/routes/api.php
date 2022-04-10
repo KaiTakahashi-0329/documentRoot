@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\ToDoAppApiController;
+use App\Http\Controllers\ToDoAppController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/todos', [ToDoAppApiController::class, 'index']);
 Route::post('/store', [ToDoAppApiController::class, 'store']);
 Route::get('/todo/{id}', [ToDoAppApiController::class, 'show']);
+Route::post('/todo/update/{id}', [ToDoAppApiController::class, 'update']);
