@@ -35,7 +35,7 @@ const Edit = (props) => {
         <>
             <PostResultMessage postResult={postResult} />
             <div className="container w-75">
-                <Form todo={todo} onClickAddButton={submitForm} />
+                <Form todo={todo} onClickAddButton={submitForm} buttonText='変更する' />
             </div>
         </>
     )
