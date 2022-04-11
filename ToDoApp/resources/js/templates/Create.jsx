@@ -36,7 +36,7 @@ function Create(props) {
         <>
         <PostResultMessage postResult={postResult} />
         <div className="container w-75">
-            <Form onClickAddButton={submitForm} />
+            <Form onClickAddButton={submitForm} buttonText='追加する' />
         </div>
         </>      
     );
