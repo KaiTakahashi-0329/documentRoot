@@ -5494,7 +5494,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Form = function Form(props) {
-  var onClickAddButton = props.onClickAddButton,
+  var buttonText = props.buttonText,
+      onClickAddButton = props.onClickAddButton,
       _props$todo = props.todo,
       todo = _props$todo === void 0 ? [] : _props$todo;
 
@@ -5519,25 +5520,72 @@ var Form = function Form(props) {
       _useState6 = _slicedToArray(_useState5, 2),
       values = _useState6[0],
       setValues = _useState6[1];
+  /**
+  * 「タイトル」部分のバリデーション
+  * 空白 or null だったときにstateをfalseにする
+  * @type {Strign} name
+  * @type {Strign} targetData
+  * @return {Boolean}
+  */
+
+
+  var validateTitle = function validateTitle(name, targetData) {
+    if (name !== 'title') return;
+    var isNull_title = (0,_modules_validate__WEBPACK_IMPORTED_MODULE_6__.isNull)(targetData);
+    return isNull_title;
+  };
+  /**
+  * 入力フォームに変更があったときに実行
+  * 1. stateに入力値を保持する
+  * 2. タイトルが空白でないかバリデーションする
+  */
+
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+      _useState8 = _slicedToArray(_useState7, 2),
+      importantId = _useState8[0],
+      setImportantId = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+      _useState10 = _slicedToArray(_useState9, 2),
+      urgentId = _useState10[0],
+      setUrgentId = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+      _useState12 = _slicedToArray(_useState11, 2),
+      statusId = _useState12[0],
+      setStatusId = _useState12[1];
 
   var handleChange = function handleChange(name) {
     return function (event) {
-      var newValues = _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, name, event.target.value));
+      var newValues;
 
-      setValues(newValues);
-      /**
-      * 「タイトル」部分のバリデーション
-      * 空白 or null だったときにstateをfalseにする
-      * @type {Strign} title
-      */
+      if (event.target.classList.contains('js-select')) {
+        if (name === 'important_id') {
+          setImportantId(event.target.value);
+          newValues = _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, name, importantId));
+        }
 
-      var validateTitle = function validateTitle(name) {
-        if (name !== 'title') return;
-        var isNull_title = (0,_modules_validate__WEBPACK_IMPORTED_MODULE_6__.isNull)(newValues.title);
-        setValidate(isNull_title);
-      };
+        if (name === 'urgent_id') {
+          setUrgentId(event.target.value);
+          newValues = _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, name, urgentId));
+        }
 
-      validateTitle(name);
+        if (name === 'status_id') {
+          setStatusId(event.target.value);
+          newValues = _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, name, statusId));
+        }
+      } else {
+        // 1. stateに入力値を保持する
+        newValues = _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, name, event.target.value));
+      }
+
+      console.log(name);
+      console.log(newValues);
+      setValues(newValues); // 2. タイトルが空白でないかバリデーションする
+
+      var isValidate = validateTitle(name, newValues.title);
+      setValidate(isValidate);
     };
   };
   /**
@@ -5577,6 +5625,33 @@ var Form = function Form(props) {
 
     setStateDeadline();
   }, [dataPicker]);
+  /**
+  * todoが更新された時のみ実行
+  */
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    /**
+    * @type {Array} data (FetchしてきたTODOデータが格納されている)
+    * Titleが空白でないかバリデーションする
+    */
+    var validateTodo = function validateTodo(data) {
+      if (data.length > 0) {
+        var isValidate = validateTitle('title', data[0].title);
+        setValidate(isValidate);
+      }
+    };
+
+    var setStateTodo = function setStateTodo(data) {
+      if (data.length > 0) {
+        var newValues = _objectSpread({}, data[0]);
+
+        setValues(newValues);
+      }
+    };
+
+    validateTodo(todo);
+    setStateTodo(todo);
+  }, [todo]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("form", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
       className: "mb-3",
@@ -5617,7 +5692,8 @@ var Form = function Form(props) {
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Selectbox__WEBPACK_IMPORTED_MODULE_3__["default"], {
           label: "\u91CD\u8981\u5EA6",
           selectArray: ['高', '中', '低'],
-          onChange: handleChange('important_id')
+          onChange: handleChange('important_id'),
+          value: importantId
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
         className: "ms-3",
@@ -5629,7 +5705,8 @@ var Form = function Form(props) {
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Selectbox__WEBPACK_IMPORTED_MODULE_3__["default"], {
           label: "\u7DCA\u6025\u5EA6",
           selectArray: ['高', '中', '低'],
-          onChange: handleChange('urgent_id')
+          onChange: handleChange('urgent_id'),
+          value: urgentId
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
         className: "ms-3",
@@ -5641,7 +5718,8 @@ var Form = function Form(props) {
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Selectbox__WEBPACK_IMPORTED_MODULE_3__["default"], {
           label: "\u30B9\u30C6\u30FC\u30BF\u30B9",
           selectArray: ['進行予定', '進行中', '完了', '一時退避'],
-          onChange: handleChange('status_id')
+          onChange: handleChange('status_id'),
+          value: statusId
         })
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
@@ -5666,12 +5744,12 @@ var Form = function Form(props) {
         }
       })]
     }), validate ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_PrimaryButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      text: "\u8FFD\u52A0\u3059\u308B",
+      text: buttonText,
       onClick: function onClick() {
         return onClickAddButton(values);
       }
     }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_DisabledButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      text: "\u8FFD\u52A0\u3059\u308B"
+      text: buttonText
     })]
   });
 };
@@ -5903,8 +5981,7 @@ var Selectbox = function Selectbox(props) {
   var label = props.label,
       selectArray = props.selectArray,
       onChange = props.onChange,
-      _props$value = props.value,
-      value = _props$value === void 0 ? 1 : _props$value;
+      value = props.value;
   var options = selectArray.map(function (element, index) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
       value: index + 1,
@@ -5916,8 +5993,8 @@ var Selectbox = function Selectbox(props) {
       className: "form-label",
       children: label
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("select", {
-      "class": "form-select",
-      defaultValue: value,
+      "class": "form-select js-select",
+      value: value,
       onChange: onChange,
       children: options
     })]
@@ -6125,7 +6202,8 @@ function Create(props) {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "container w-75",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_Form__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        onClickAddButton: submitForm
+        onClickAddButton: submitForm,
+        buttonText: "\u8FFD\u52A0\u3059\u308B"
       })
     })]
   });
@@ -6192,7 +6270,8 @@ var Edit = function Edit(props) {
       className: "container w-75",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Form__WEBPACK_IMPORTED_MODULE_1__["default"], {
         todo: todo,
-        onClickAddButton: submitForm
+        onClickAddButton: submitForm,
+        buttonText: "\u5909\u66F4\u3059\u308B"
       })
     })]
   });
