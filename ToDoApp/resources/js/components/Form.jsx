@@ -13,7 +13,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const Form = (props) => {
-    const { onClickAddButton, todo= [] } = props;    
+    const { buttonText, onClickAddButton, todo = [] } = props;    
 
     const [validate, setValidate] = useState(false);
     const [dataPicker, setDataPicker] = useState();
@@ -26,27 +26,72 @@ const Form = (props) => {
         deadline: '',
     });
 
+    /**
+    * 「タイトル」部分のバリデーション
+    * 空白 or null だったときにstateをfalseにする
+    * @type {Strign} name
+    * @type {Strign} targetData
+    * @return {Boolean}
+    */
+    const validateTitle = (name, targetData) => {
+        if(name !== 'title') return;
+
+        const isNull_title = isNull(targetData);
+        return isNull_title;
+    }
+
+    /**
+    * 入力フォームに変更があったときに実行
+    * 1. stateに入力値を保持する
+    * 2. タイトルが空白でないかバリデーションする
+    */
+   const [importantId, setImportantId] = useState(1);
+   const [urgentId, setUrgentId] = useState(1);
+   const [statusId, setStatusId] = useState(1);
+
     const handleChange = (name) => (event) => {
-        const newValues = {
-            ...values,
-            [name]: event.target.value
+        let newValues;
+
+        if(event.target.classList.contains('js-select')) {
+            if(name === 'important_id') {
+                setImportantId(event.target.value);
+
+                newValues = {
+                    ...values,
+                    [name]: importantId
+                }
+            }
+            if(name === 'urgent_id') {
+                setUrgentId(event.target.value);
+
+                newValues = {
+                    ...values,
+                    [name]: urgentId
+                }
+            }
+            if(name === 'status_id') {
+                setStatusId(event.target.value);
+
+                newValues = {
+                    ...values,
+                    [name]: statusId
+                }
+            }
+        } else {
+            // 1. stateに入力値を保持する
+            newValues = {
+                ...values,
+                [name]: event.target.value
+            }
         }
         
+        console.log(name);
+        console.log(newValues);
         setValues(newValues);
 
-        /**
-        * 「タイトル」部分のバリデーション
-        * 空白 or null だったときにstateをfalseにする
-        * @type {Strign} title
-        */
-        const validateTitle = (name) => {
-            if(name !== 'title') return;
-
-            const isNull_title = isNull(newValues.title);
-            setValidate(isNull_title);
-        }
-
-        validateTitle(name);
+        // 2. タイトルが空白でないかバリデーションする
+        const isValidate = validateTitle(name, newValues.title);
+        setValidate(isValidate);
     }
 
         /**
@@ -86,9 +131,40 @@ const Form = (props) => {
         }
 
         setStateDeadline();
-        
     }, [dataPicker]);
-    
+
+    /**
+    * todoが更新された時のみ実行
+    */
+    useEffect(() => {    
+        /**
+        * @type {Array} data (FetchしてきたTODOデータが格納されている)
+        * Titleが空白でないかバリデーションする
+        */
+        const validateTodo = (data) => {
+            if(data.length > 0) {
+                const isValidate = validateTitle('title', data[0].title);    
+                setValidate(isValidate);
+            }
+        }
+
+        const setStateTodo = (data) => {
+            if(data.length > 0) {
+                const newValues = {
+                    ...data[0]
+                }
+
+                setValues(newValues);
+            }
+        }
+
+        validateTodo(todo);
+        setStateTodo(todo);
+
+        
+
+    }, [todo])
+
     return (
         <form>
             <div className="mb-3">
@@ -110,21 +186,21 @@ const Form = (props) => {
                 {
                     todo.length > 0
                     ? <Selectbox label='重要度' selectArray={ ['高', '中', '低'] } onChange={handleChange('important_id')} value={todo[0].important_id} />
-                    : <Selectbox label='重要度' selectArray={ ['高', '中', '低'] } onChange={handleChange('important_id')} />
+                    : <Selectbox label='重要度' selectArray={ ['高', '中', '低'] } onChange={handleChange('important_id')} value={importantId} />
                 }
                 </div>
                 <div className="ms-3">
                 {
                     todo.length > 0
                     ? <Selectbox label='緊急度' selectArray={ ['高', '中', '低'] } onChange={handleChange('urgent_id')} value={todo[0].urgent_id} />
-                    : <Selectbox label='緊急度' selectArray={ ['高', '中', '低'] } onChange={handleChange('urgent_id')} />
+                    : <Selectbox label='緊急度' selectArray={ ['高', '中', '低'] } onChange={handleChange('urgent_id')} value={urgentId}/>
                 }   
                 </div>
                 <div className="ms-3">
                 {
                     todo.length > 0
                     ? <Selectbox label='ステータス' selectArray={ ['進行予定', '進行中', '完了', '一時退避'] } onChange={handleChange('status_id')} value={todo[0].status_id} />
-                    : <Selectbox label='ステータス' selectArray={ ['進行予定', '進行中', '完了', '一時退避'] } onChange={handleChange('status_id')} />
+                    : <Selectbox label='ステータス' selectArray={ ['進行予定', '進行中', '完了', '一時退避'] } onChange={handleChange('status_id')} value={statusId} />
                 }
                 </div>
             </div>
@@ -137,7 +213,7 @@ const Form = (props) => {
                 }
             </div>
             {
-                validate ? <PrimaryButton text="追加する" onClick={ () => onClickAddButton(values) } /> : <DisabledButton text="追加する" />
+                validate ? <PrimaryButton text={buttonText} onClick={ () => onClickAddButton(values) } /> : <DisabledButton text={buttonText} />
             }
         </form>
     )
