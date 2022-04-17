@@ -15,6 +15,9 @@ import "react-datepicker/dist/react-datepicker.css";
 const Form = (props) => {
     const { buttonText, onClickAddButton, todo = [] } = props;    
 
+    const [importantID, setImportantID] = useState(1);
+    const [urgentID, setUrgentID] = useState(1);
+    const [statusID, setStatusID] = useState(1);
     const [validate, setValidate] = useState(false);
     const [dataPicker, setDataPicker] = useState();
     const [values, setValues] = useState({
