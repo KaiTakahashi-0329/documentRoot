@@ -5499,17 +5499,32 @@ var Form = function Form(props) {
       _props$todo = props.todo,
       todo = _props$todo === void 0 ? [] : _props$todo;
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
       _useState2 = _slicedToArray(_useState, 2),
-      validate = _useState2[0],
-      setValidate = _useState2[1];
+      importantID = _useState2[0],
+      setImportantID = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
       _useState4 = _slicedToArray(_useState3, 2),
-      dataPicker = _useState4[0],
-      setDataPicker = _useState4[1];
+      urgentID = _useState4[0],
+      setUrgentID = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+      _useState6 = _slicedToArray(_useState5, 2),
+      statusID = _useState6[0],
+      setStatusID = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      validate = _useState8[0],
+      setValidate = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+      _useState10 = _slicedToArray(_useState9, 2),
+      dataPicker = _useState10[0],
+      setDataPicker = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     title: '',
     text: '',
     important_id: 1,
@@ -5517,9 +5532,9 @@ var Form = function Form(props) {
     status_id: 1,
     deadline: ''
   }),
-      _useState6 = _slicedToArray(_useState5, 2),
-      values = _useState6[0],
-      setValues = _useState6[1];
+      _useState12 = _slicedToArray(_useState11, 2),
+      values = _useState12[0],
+      setValues = _useState12[1];
   /**
   * 「タイトル」部分のバリデーション
   * 空白 or null だったときにstateをfalseにする
@@ -5541,20 +5556,20 @@ var Form = function Form(props) {
   */
 
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
-      _useState8 = _slicedToArray(_useState7, 2),
-      importantId = _useState8[0],
-      setImportantId = _useState8[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+      _useState14 = _slicedToArray(_useState13, 2),
+      importantId = _useState14[0],
+      setImportantId = _useState14[1];
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
-      _useState10 = _slicedToArray(_useState9, 2),
-      urgentId = _useState10[0],
-      setUrgentId = _useState10[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+      _useState16 = _slicedToArray(_useState15, 2),
+      urgentId = _useState16[0],
+      setUrgentId = _useState16[1];
 
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
-      _useState12 = _slicedToArray(_useState11, 2),
-      statusId = _useState12[0],
-      setStatusId = _useState12[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+      _useState18 = _slicedToArray(_useState17, 2),
+      statusId = _useState18[0],
+      setStatusId = _useState18[1];
 
   var handleChange = function handleChange(name) {
     return function (event) {
@@ -6331,6 +6346,7 @@ var Show = function Show() {
   var params = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useParams)();
   var id = params.id;
   var editLink = "/todo/edit/".concat(id);
+  var deleteLink = "/todo/delete/".concat(id);
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     var fetchTodoList = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -6440,6 +6456,10 @@ var Show = function Show() {
       to: editLink,
       className: "card-text",
       children: "\u7DE8\u96C6\u3059\u308B"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+      to: deleteLink,
+      className: "card-text",
+      children: "\u524A\u9664\u3059\u308B"
     })]
   });
 };

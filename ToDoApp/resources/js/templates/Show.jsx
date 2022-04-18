@@ -8,6 +8,7 @@ const Show = () => {
     const params = useParams();
     const id = params.id;
     const editLink = `/todo/edit/${id}`;
+    const deleteLink = `/todo/delete/${id}`;
     
     useEffect(() => {
         const fetchTodoList = async () => {
@@ -78,6 +79,7 @@ const Show = () => {
                 }
             </div>
             <Link to={editLink} className="card-text">編集する</Link>
+            <Link to={deleteLink} className="card-text">削除する</Link>
         </div>
     )
 }
