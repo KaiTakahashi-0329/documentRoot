@@ -79,7 +79,7 @@ const Show = () => {
                 }
             </div>
             <Link to={editLink} className="card-text">編集する</Link>
-            <Link to={deleteLink} className="card-text">削除する</Link>
+            <Link to={deleteLink} className="card-text ms-3">削除する</Link>
         </div>
     )
 }
