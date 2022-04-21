@@ -24,3 +24,4 @@ Route::get('/todos', [ToDoAppApiController::class, 'index']);
 Route::post('/store', [ToDoAppApiController::class, 'store']);
 Route::get('/todo/{id}', [ToDoAppApiController::class, 'show']);
 Route::post('/todo/update/{id}', [ToDoAppApiController::class, 'update']);
+Route::delete('/todo/delete/{id}', [ToDoAppApiController::class, 'delete']);
