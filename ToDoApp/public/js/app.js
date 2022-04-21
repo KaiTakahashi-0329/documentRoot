@@ -5839,6 +5839,7 @@ var item = function item(props) {
       created_at = props.created_at;
   var link = "/todo/".concat(id);
   var editLink = "/todo/edit/".concat(id);
+  var deleteLink = "/todo/delete/".concat(id);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("li", {
     className: "col",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
@@ -5862,6 +5863,10 @@ var item = function item(props) {
           to: editLink,
           className: "card-text ms-3",
           children: "\u7DE8\u96C6\u3059\u308B"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+          to: deleteLink,
+          className: "card-text ms-3",
+          children: "\u524A\u9664\u3059\u308B"
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
         className: "card-footer",
@@ -6458,7 +6463,7 @@ var Show = function Show() {
       children: "\u7DE8\u96C6\u3059\u308B"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
       to: deleteLink,
-      className: "card-text",
+      className: "card-text ms-3",
       children: "\u524A\u9664\u3059\u308B"
     })]
   });
