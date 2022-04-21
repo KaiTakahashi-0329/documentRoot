@@ -4,6 +4,7 @@ const item = (props) => {
     const { id, title, text, created_at } = props;
     const link = `/todo/${id}`;
     const editLink = `/todo/edit/${id}`;
+    const deleteLink = `/todo/delete/${id}`;
 
     return (
         <li className="col">
@@ -13,6 +14,7 @@ const item = (props) => {
                     <p className="card-text">{ text }</p>
                     <Link to={link} className="card-text">詳細を見る</Link>
                     <Link to={editLink} className="card-text ms-3">編集する</Link>
+                    <Link to={deleteLink} className="card-text ms-3">削除する</Link>
                 </div>
                 <div className="card-footer">
                     <small className="text-muted">{created_at}</small>
